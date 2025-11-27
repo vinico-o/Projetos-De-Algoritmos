@@ -5,7 +5,7 @@ Minha mochila suporta no máximo 15kg.
 Que fração de cada objeto devo colocar na mochila de modo a maximizar o valor total?
 
 
-INTENÇÃO: pegar o maior valor possivel
+INTENÇÃO: pegar o maior valor x peso possivel
           dentro da capacidade da mochila
 
 
