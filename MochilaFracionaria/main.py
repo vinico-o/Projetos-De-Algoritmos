@@ -13,7 +13,7 @@ material auxiliar: ime-usp
                    wikipedia
 """
 import random
-import numpy as np
+
 
 def mochilaFracionaria(itens, capacidadeMax):
 
@@ -26,7 +26,7 @@ def mochilaFracionaria(itens, capacidadeMax):
     valorTotal = 0
     pesoAtual = 0
 
-    matriz_solucao = np.zeros((3, 3), dtype=object)
+    matriz_solucao = []
     i = 0
 
     # percorrendo os itens ja ordenados
@@ -36,18 +36,14 @@ def mochilaFracionaria(itens, capacidadeMax):
         if peso + pesoAtual <= capacidadeMax:
             pesoAtual += peso
             valorTotal += valor
-            matriz_solucao[i][0] = nome 
-            matriz_solucao[i][1] = peso
-            matriz_solucao[i][2] = valor
+            matriz_solucao.append((nome, peso, valor))
         
 
         # se nao da pra colocar o item inteiro - fracionamos
         else:
             valorFracionado = (capacidadeMax - pesoAtual) * (valor / peso) 
             valorTotal += valorFracionado 
-            matriz_solucao[i][0] = nome 
-            matriz_solucao[i][1] = capacidadeMax - pesoAtual 
-            matriz_solucao[i][2] = valorFracionado 
+            matriz_solucao.append((nome, capacidadeMax - pesoAtual, valorFracionado))
             pesoAtual = capacidadeMax 
             
             break
@@ -60,32 +56,40 @@ def resultados(matriz_solucao, valorTotal):
 
     print("---------\nItens escolhidos (peso x valor):")
     
-    for i in range(matriz_solucao.shape[0]):
+    for nome, peso, valor in matriz_solucao:
         
-        if matriz_solucao[i][0] != 0:
-            
-            print(f"{matriz_solucao[i][0]} -> {matriz_solucao[i][1]} x {matriz_solucao[i][2]:.2f}")
+        print(f"{nome} -> {peso} x {valor:.2f}")
 
     print (f"\nValor total: {valorTotal:.2f}")
     print("---------\n")
 
 # main
 
-itens = [('A',random.randint(50, 120), random.randint(10, 30)),
-         ('B',random.randint(50, 120), random.randint(10, 30)),
-         ('C',random.randint(50, 120), random.randint(10, 30)),]
-
-capacidadeMaxima = random.randint(100, 300)
-
 print ("\n\n---------\nIdeia do algoritmo: pegar o maior valor possivel dentro da capacidade da mochila\n" \
         "se tem espaço - pega o item com maior valor/peso\n" \
         "se não conseguir pegar inteiro - pega uma parte\n---------\n" )
 
-print ("Capacidade x valor")
-for i in itens:
-    print(f"{i[0]} -> {i[1]}  x {i[2]} -> valor/peso: {i[2]/i[1]:.2f}")
 
-print (f"\nCapacidade maxima da mochila: {capacidadeMaxima}\n")
+itens = []
+
+nomes = ['A', 'B', 'C']
+
+for nome in nomes:
+    print(f"\nItem {nome}:")
+    peso = int(input("Peso: "))
+    valor = int(input("Valor: "))
+    print()
+
+    itens.append((nome, peso, valor))
+
+print("\n\nItem - peso - valor:")
+for item in itens:
+    print(item)
+
+
+capacidadeMaxima = int(input("\nInforme a capacidade maxima da mochila: "))
+
+print (f"Capacidade maxima da mochila: {capacidadeMaxima}\n")
 
 matriz_solucao, valorTotal = mochilaFracionaria(itens, capacidadeMaxima)
 
