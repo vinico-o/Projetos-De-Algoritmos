@@ -146,10 +146,10 @@ def resultados(textoOriginal, cod, textoCodificado):
 
     print(f"\nCodificação de Huffman: {textoCodificado}")
 
+def executarSistema():
+    # main
+    entrada = input("-----Informe o texto para Codificação de Huffman-----\n->> ")
+    codigos, texto_codificado = textoCodHuffman(entrada)
 
-# main
-entrada = input("-----Informe o texto para Codificação de Huffman-----\n->> ")
-codigos, texto_codificado = textoCodHuffman(entrada)
 
-
-resultados(entrada, codigos, texto_codificado)
+    resultados(entrada, codigos, texto_codificado)

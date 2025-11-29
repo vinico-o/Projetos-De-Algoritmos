@@ -64,33 +64,33 @@ def resultados(matriz_solucao, valorTotal):
     print("---------\n")
 
 # main
-
-print ("\n\n---------\nIdeia do algoritmo: pegar o maior valor possivel dentro da capacidade da mochila\n" \
-        "se tem espaço - pega o item com maior valor/peso\n" \
-        "se não conseguir pegar inteiro - pega uma parte\n---------\n" )
-
-
-itens = []
-
-nomes = ['A', 'B', 'C']
-
-for nome in nomes:
-    print(f"\nItem {nome}:")
-    peso = int(input("Peso: "))
-    valor = int(input("Valor: "))
-    print()
-
-    itens.append((nome, peso, valor))
-
-print("\n\nItem - peso - valor:")
-for item in itens:
-    print(item)
+def executarSistema():
+    print ("\n\n---------\nIdeia do algoritmo: pegar o maior valor possivel dentro da capacidade da mochila\n" \
+            "se tem espaço - pega o item com maior valor/peso\n" \
+            "se não conseguir pegar inteiro - pega uma parte\n---------\n" )
 
 
-capacidadeMaxima = int(input("\nInforme a capacidade maxima da mochila: "))
+    itens = []
 
-print (f"Capacidade maxima da mochila: {capacidadeMaxima}\n")
+    nomes = ['A', 'B', 'C']
 
-matriz_solucao, valorTotal = mochilaFracionaria(itens, capacidadeMaxima)
+    for nome in nomes:
+        print(f"\nItem {nome}:")
+        peso = int(input("Peso: "))
+        valor = int(input("Valor: "))
+        print()
 
-resultados(matriz_solucao, valorTotal)
+        itens.append((nome, peso, valor))
+
+    print("\n\nItem - peso - valor:")
+    for item in itens:
+        print(item)
+
+
+    capacidadeMaxima = int(input("\nInforme a capacidade maxima da mochila: "))
+
+    print (f"Capacidade maxima da mochila: {capacidadeMaxima}\n")
+
+    matriz_solucao, valorTotal = mochilaFracionaria(itens, capacidadeMaxima)
+
+    resultados(matriz_solucao, valorTotal)

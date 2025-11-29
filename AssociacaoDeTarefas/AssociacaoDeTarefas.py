@@ -3,12 +3,19 @@ import numpy as np
 #O job assingment problem é formulado atraves de uma matriz quadrada,#
 # ja que teremos exatamente uma pessoa para resolver cada tarefa
 
-n = int(input("Digite a Dimensão da Matriz NxN: "))
-custo = np.zeros((n, n)) #matriz com os custos
+def executarSistema():
+    print("\n\nPROBLEMA DE ASSOCIAÇÃO DE TAREFAS")
+    n = int(input("Digite a Dimensão da Matriz NxN: "))
+    custo = np.zeros((n, n)) #matriz com os custos
 
-for i in range(n):
-    for j in range(n):
-        custo[i][j] = float(input(f"Digite o custo em [pessoa {i + 1}][tarefa {j + 1}]: "))
+    print()
+    for i in range(n):
+        for j in range(n):
+            custo[i][j] = float(input(f"Digite o custo em [pessoa {i + 1}][tarefa {j + 1}]: "))
+    imprimirMatriz(custo)
+
+    solucao = branchAndBound(custo)
+    imprimirSolucao(solucao)
 
 def imprimirSolucao(solucao):
     print("\nMelhor Solução Encontrada:")
@@ -16,9 +23,12 @@ def imprimirSolucao(solucao):
     for pessoa, tarefa in enumerate(solucao[0]):
         print(f"Pessoa P{pessoa+1} -> Tarefa T{tarefa+1}")
 
-    print(f"Custo total: {solucao[1]:.2f}")
+    print(f"Custo total: {solucao[1]:.2f}\n\n")
 
 def imprimirMatriz(custo):
+    n = len(custo)
+
+    print("\nMatriz de Custos digitada:\n")
     print("       ", end="")
     T = "T"
     #cabecalho das tarefas
@@ -37,6 +47,7 @@ def imprimirMatriz(custo):
 #serve para calcular uma estimativa otimista do custo minimo da configuracao parcial
 #descarta solucoes nao otimas
 def calcularLimiteInferior(custo, atribuicoes, pessoa_atual):
+    n = len(custo)
     custo_atual = 0;
     tarefas_disponiveis = list(range(n))
 
@@ -78,7 +89,7 @@ def calcularCustoCompleto(custo, atribuicoes):
     return custo_total
 
 def branchAndBound(custo):
-
+    n = len(custo)
     inicial = [-1] * n #cria uma lista (te tamnaho n) de -1s
 
     #F é um par de configuracao-custo
@@ -123,8 +134,3 @@ def branchAndBound(custo):
     #cria um par solucao-custo, para os melhor custo encontrado
     solucao = (melhor_solucao, melhor_custo)
     return solucao
-
-imprimirMatriz(custo)
-
-solucao = branchAndBound(custo)
-imprimirSolucao(solucao)

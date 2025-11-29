@@ -84,35 +84,35 @@ def mochilaBooleana(capacidadeMax, itens):
 
 
 # main
+def executarSistema():
+    print ("\n\n---------\nIdeia do algoritmo: pegar o maior valor possivel dentro da capacidadeMax da mochila\n" \
+            "se tem espaço - pega o item com maior valor\n" \
+            "se não conseguir pegar inteiro - não pega o item\n---------\n" )
 
-print ("\n\n---------\nIdeia do algoritmo: pegar o maior valor possivel dentro da capacidadeMax da mochila\n" \
-        "se tem espaço - pega o item com maior valor\n" \
-        "se não conseguir pegar inteiro - não pega o item\n---------\n" )
+    itens = []
 
-itens = []
+    nomes = ['A', 'B', 'C']
 
-nomes = ['A', 'B', 'C']
+    for nome in nomes:
+        print(f"\nItem {nome}:")
+        peso = int(input("Peso: "))
+        valor = int(input("Valor: "))
+        print()
 
-for nome in nomes:
-    print(f"\nItem {nome}:")
-    peso = int(input("Peso: "))
-    valor = int(input("Valor: "))
-    print()
+        itens.append((nome, peso, valor))
 
-    itens.append((nome, peso, valor))
-
-print("\n\nItem - peso - valor:")
-for item in itens:
-    print(item)
-
-
-capacidadeMaxima = int(input("\nInforme a capacidade maxima da mochila: "))
-
-print (f"Capacidade maxima da mochila: {capacidadeMaxima}\n")
-
-resultado, itens_escolhidos = mochilaBooleana(capacidadeMaxima, itens)
+    print("\n\nItem - peso - valor:")
+    for item in itens:
+        print(item)
 
 
-print (f"Valor total na mochila: {resultado}")
-print(f"Itens escolhidos (item - peso - valor): {itens_escolhidos}\n\n\n\n")
+    capacidadeMaxima = int(input("\nInforme a capacidade maxima da mochila: "))
+
+    print (f"Capacidade maxima da mochila: {capacidadeMaxima}\n")
+
+    resultado, itens_escolhidos = mochilaBooleana(capacidadeMaxima, itens)
+
+
+    print (f"Valor total na mochila: {resultado}")
+    print(f"Itens escolhidos (item - peso - valor): {itens_escolhidos}\n\n\n\n")
     

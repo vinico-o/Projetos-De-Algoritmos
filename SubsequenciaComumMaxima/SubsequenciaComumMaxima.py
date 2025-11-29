@@ -35,14 +35,10 @@ def subsequenciaComumMaxima(entrada1, entrada2):
     return matriz_solucao[tam1][tam2]
 
 
-
-
-entrada1 = input("\nInforme a primeira string: ")
-
-entrada2 = input("\nInforme a segunda string: ")
-
-resultado = subsequenciaComumMaxima(entrada1, entrada2)
-
-print (f"\nSubsequencia: {resultado}\n\n")
+def executarSistema():
+    entrada1 = input("\nInforme a primeira string: ")
+    entrada2 = input("\nInforme a segunda string: ")
+    resultado = subsequenciaComumMaxima(entrada1, entrada2)
+    print (f"\nSubsequencia: {resultado}\n\n")
 
 
